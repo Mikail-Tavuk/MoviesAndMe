@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet ,View, Button, TextInput } from 'react-native'
+import { StyleSheet ,View, Button, TextInput, FlatList, Text } from 'react-native'
 
 class Search extends React.Component {
   render() {
@@ -7,6 +7,9 @@ class Search extends React.Component {
       <View style={styles.view}>
         <TextInput style= {styles.textinput} placeholder="Quel film cherchez-vous ?"/>
         <Button title="Rechercher" onPress={() => {}}/>
+        <FlatList
+          data={[{key: 'a'}, {key: 'b'}]}
+          renderItem={({item}) => <Text>{item.key}</Text>} />
       </View>
     )
   }
@@ -19,11 +22,13 @@ const styles = StyleSheet.create({
     height: 50,
     borderColor: '#000000',
     borderWidth: 1,
-    paddingLeft: 5
+    paddingLeft: 5,
+    borderRadius: 10
   }
 
   ,view: {
-    marginTop: 70
+    marginTop: 70,
+    flex: 1 // la view prend désormais toute la taille de l'écran grâce à flexbox
   }
 })
 
