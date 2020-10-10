@@ -2,15 +2,27 @@ import React from 'react'
 import { StyleSheet ,View, Button, TextInput, FlatList, Text } from 'react-native'
 import films from '../Helpers/filmsData'
 import FilmItem from './FilmItem'
+import { getFilmsWithApi } from '../API/TMDBApi'
 
 class Search extends React.Component {
+  
+  constructor(props) {
+    super(props)
+    this.state = { films: [] }  // film est une liste (un array) (pour l'instant) vide
+  }
+
+  _loadFilms() { // cette fonction est appelée dès que l'user clique sur le bouton "rechercher"
+    getFilmsWithApi("star").then(data => this.setState({ films: data.results })) // la fonction 'getFilmsWithApi' est elle-même appelée dans la fonction _loadFilms (raison pour laquelle elle est importée depuis API/TMDB.js) 
+  }
+
   render() {
+    console.log("RESULTS RENDER");  // prouve que le setState est appelé est rechargé avec les donnés du film
     return (
       <View style={styles.view}>
         <TextInput style= {styles.textinput} placeholder="Quel film cherchez-vous ?"/>
-        <Button title="Rechercher" onPress={() => {}}/>
+        <Button title="Rechercher" onPress={() => this._loadFilms()}/>
         <FlatList
-          data={films}
+          data={this.state.films} // utilisation du tableau dans la liste de films
           keyExtractor={(item) => item.id.toString()}  // permet d'avoir une key pour identifier chaque item de manière unique
           renderItem={({item}) => <FilmItem film={item}/>} />
       </View>

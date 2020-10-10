@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image } from 'react-native'
 class FilmItem extends React.Component {
   render() {
     const film = this.props.film
-    console.log(this.props )
+    // console.log(this.props )
     return (
       <View style={styles.main_container}>
         <Image 
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 180,
     margin: 5,
+    borderRadius: 10
   },
 
   content_container: {
