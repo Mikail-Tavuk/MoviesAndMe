@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
   release_date: {
     fontStyle: 'italic',
     fontSize: 16,
-    textAlign: 'center'
+    textAlign: 'center',
+    textAlign: 'right'
   }
 })
 

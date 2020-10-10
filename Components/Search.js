@@ -8,18 +8,28 @@ class Search extends React.Component {
   
   constructor(props) {
     super(props)
-    this.state = { films: [] }  // film est une liste (un array) (pour l'instant) vide
+    this.state = { films: [], // film est une liste (un array) (pour l'instant) vide
+    //searchedText: "" // searchedText est la propriété permettant de stocker ce que l'utilisateur a stocker dans la bar de recherche
+    }
+    this.searchedText = ""
   }
 
   _loadFilms() { // cette fonction est appelée dès que l'user clique sur le bouton "rechercher"
-    getFilmsWithApi("star").then(data => this.setState({ films: data.results })) // la fonction 'getFilmsWithApi' est elle-même appelée dans la fonction _loadFilms (raison pour laquelle elle est importée depuis API/TMDB.js) 
+    // getFilmsWithApi(this.state.searchedText).then(data => this.setState({ films: data.results })) // la fonction 'getFilmsWithApi' est elle-même appelée dans la fonction _loadFilms (raison pour laquelle elle est importée depuis API/TMDB.js)
+    if (this.searchedText.length > 0) {getFilmsWithApi(this.searchedText).then(data => this.setState({ films: data.results })) // la fonction 'getFilmsWithApi' est elle-même appelée dans la fonction _loadFilms (raison pour laquelle elle est importée depuis API/TMDB.js)
+    }
+  }
+
+  _searchChangedText(text) {
+    // this.setState({ searchedText: text })
+    this.searchedText = text
   }
 
   render() {
     console.log("RESULTS RENDER");  // prouve que le setState est appelé est rechargé avec les donnés du film
     return (
       <View style={styles.view}>
-        <TextInput style= {styles.textinput} placeholder="Quel film cherchez-vous ?"/>
+        <TextInput onChangeText={(text) => this._searchChangedText(text)} style={styles.textinput} placeholder="Quel film cherchez-vous ?"/>
         <Button title="Rechercher" onPress={() => this._loadFilms()}/>
         <FlatList
           data={this.state.films} // utilisation du tableau dans la liste de films
