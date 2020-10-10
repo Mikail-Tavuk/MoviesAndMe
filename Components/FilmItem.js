@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, Image } from 'react-native'
 
 class FilmItem extends React.Component {
   render() {
+    const film = this.props.film
+    console.log(this.props )
     return (
       <View style={styles.main_container}>
         <Image 
@@ -15,18 +17,18 @@ class FilmItem extends React.Component {
         <View style={styles.content_container}>
           <View style={styles.header_container}>
             {/* <View style={styles.rate}> */}
-            <Text style={styles.movie_name}>Titre du film:</Text>
-            <Text style={styles.rates}>Note</Text>
+            <Text style={styles.movie_name}>{film.title}</Text>
+            <Text style={styles.rates}>{film.vote_average}</Text>
           </View>
         {/* </View> */}
 
           <View style={styles.description_container}>
-            <Text style={styles.description_txt} numberOfLines={6}>La description s'affiche ici</Text>
+            <Text style={styles.description_txt} numberOfLines={6}>{film.overview}</Text>
             {/* 'numberOfLines' délimite le nombre max de lignes pour la description, le nombre max est ici de 6 lignes */}
           </View>
 
           <View style={styles.date_container}>
-            <Text style={styles.release_date}>Sorti le 00/00/0000</Text>
+            <Text style={styles.release_date}>Sorti le: {film.release_date}</Text>
           </View>
         </View>
       </View>
@@ -44,17 +46,18 @@ const styles = StyleSheet.create({
     // backgroundColor: 'grey'
     width: 120,
     height: 180,
-    margin: 5
+    margin: 5,
   },
 
   content_container: {
     flex: 1,
-    margin: 5
+    margin: 5,
+    // bottom: -10
   },
 
   header_container: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
   movie_name: {
@@ -66,9 +69,10 @@ const styles = StyleSheet.create({
   },
 
   rates: {
-    flex: 1,
+    // flex: 1, Empêche le titre du film de s'afficher correctemetn lorsque le flex est activé
     fontSize: 20,
-    color: 'grey'
+    color: 'grey',
+    textAlign: 'right'
   },
 
   description_container: {
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
 
   release_date: {
     fontStyle: 'italic',
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center'
   }
 })

@@ -12,7 +12,7 @@ class Search extends React.Component {
         <FlatList
           data={films}
           keyExtractor={(item) => item.id.toString()}  // permet d'avoir une key pour identifier chaque item de manière unique
-          renderItem={({item}) => <FilmItem/>} />
+          renderItem={({item}) => <FilmItem film={item}/>} />
       </View>
     )
   }
