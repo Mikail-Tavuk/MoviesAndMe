@@ -29,7 +29,7 @@ class Search extends React.Component {
     console.log("RESULTS RENDER");  // prouve que le setState est appelé est rechargé avec les donnés du film
     return (
       <View style={styles.view}>
-        <TextInput onChangeText={(text) => this._searchChangedText(text)} style={styles.textinput} placeholder="Quel film cherchez-vous ?"/>
+        <TextInput onSubmitEditing={() => this._loadFilms()} onChangeText={(text) => this._searchChangedText(text)} style={styles.textinput} placeholder="Quel film cherchez-vous ?"/>
         <Button title="Rechercher" onPress={() => this._loadFilms()}/>
         <FlatList
           data={this.state.films} // utilisation du tableau dans la liste de films

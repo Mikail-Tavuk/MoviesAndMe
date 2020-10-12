@@ -10,5 +10,5 @@ export function getFilmsWithApi(text) {
 }
 
 export function getImageFromApi (name) {
-  return 'https://image.tmdb.org/t/p/w300' + name  
+  return 'https://image.tmdb.org/t/p/w300' + name
 }
