@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet ,View, Button, TextInput, FlatList, Text } from 'react-native'
-import films from '../Helpers/filmsData'
+// import films from '../Helpers/filmsData' Ce fichier nous est désormais inutile
 import FilmItem from './FilmItem'
 import { getFilmsWithApi } from '../API/TMDBApi'
 
@@ -9,7 +9,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = { films: [], // film est une liste (un array) (pour l'instant) vide
-    //searchedText: "" // searchedText est la propriété permettant de stocker ce que l'utilisateur a stocker dans la bar de recherche
+    //searchedText: "" searchedText est la propriété permettant de stocker ce que l'utilisateur a stocker dans la bar de recherche
     }
     this.searchedText = ""
   }
@@ -45,10 +45,12 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     height: 50,
-    borderColor: '#000000',
+    borderColor: '#007AFF',
     borderWidth: 1,
     paddingLeft: 5,
-    borderRadius: 10
+    borderRadius: 50,
+    color: '#007AFF',
+    textAlign: 'center'
   }
 
   ,view: {
